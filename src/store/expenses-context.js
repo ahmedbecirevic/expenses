@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const ExpensesContext = React.createContext({
   expenses: [],
-  addExpense: expenses => {},
-  deleteExpense: id => {},
-  addOneExpense: expense => {},
+  addExpense: (expenses) => {},
+  deleteExpense: (id) => {},
+  addOneExpense: (expense) => {},
 });
 
 export default ExpensesContext;

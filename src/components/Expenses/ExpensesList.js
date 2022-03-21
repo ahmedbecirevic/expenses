@@ -1,8 +1,8 @@
-import ExpenseItem from './ExpenseItem';
-import './ExpensesList.css';
+import ExpenseItem from "./ExpenseItem";
+import "./ExpensesList.css";
 
-const ExpensesList = ({ items, error, loading }) => {
-  const style = { className: 'expenses-list__fallback' };
+function ExpensesList({ items, error, loading }) {
+  const style = { className: "expenses-list__fallback" };
   if (error) {
     return <h2 {...style}>Cannot fetch any tasks!</h2>;
   }
@@ -16,8 +16,8 @@ const ExpensesList = ({ items, error, loading }) => {
   }
 
   return (
-    <ul className='expenses-list'>
-      {items.map(expense => (
+    <ul className="expenses-list">
+      {items.map((expense) => (
         <ExpenseItem
           key={expense.id}
           id={expense.id}
@@ -28,6 +28,6 @@ const ExpensesList = ({ items, error, loading }) => {
       ))}
     </ul>
   );
-};
+}
 
 export default ExpensesList;

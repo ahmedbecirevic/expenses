@@ -1,12 +1,12 @@
-import ChartBar from './ChartBar';
-import './Chart.css';
+import ChartBar from "./ChartBar";
+import "./Chart.css";
 
-const Chart = ({ dataPoints }) => {
+function Chart({ dataPoints }) {
   const dataPointsValues = dataPoints.map((dataPoint) => dataPoint.value);
   const maximumTotal = Math.max(...dataPointsValues);
 
   return (
-    <div className='chart'>
+    <div className="chart">
       {dataPoints.map((dataPoint) => (
         <ChartBar
           key={dataPoint.label}
@@ -17,6 +17,6 @@ const Chart = ({ dataPoints }) => {
       ))}
     </div>
   );
-};
+}
 
 export default Chart;

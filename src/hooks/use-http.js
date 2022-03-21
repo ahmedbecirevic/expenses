@@ -1,8 +1,7 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios';
+import { useState, useCallback } from "react";
+import axios from "axios";
 
-axios.defaults.baseURL =
-  'https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json';
+axios.defaults.baseURL = "https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json";
 
 export const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,8 +14,8 @@ export const useHttp = () => {
     try {
       const response = await axios.request(requestConfig);
       applyData(response.data);
-    } catch (error) {
-      setError(error);
+    } catch (e) {
+      setError(e);
     } finally {
       setIsLoading(false);
     }
