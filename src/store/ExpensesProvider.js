@@ -22,14 +22,13 @@ function ExpensesProvider({ children }) {
         `https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses/${expenseId}.json`,
       )
       .then((res) => {
-        res.data == null
-          && setExpenses((prevState) => {
-            const filteredExpenses = prevState.filter(
-              (expense) => expense.id !== expenseId,
-            );
+        setExpenses((prevState) => {
+          const filteredExpenses = prevState.filter(
+            (expense) => expense.id !== expenseId,
+          );
 
-            return filteredExpenses;
-          });
+          return filteredExpenses;
+        });
       })
       .catch((error) => {
         console.log(error);
