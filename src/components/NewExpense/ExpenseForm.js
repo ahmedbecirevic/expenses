@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import "./ExpenseForm.css";
 import Alert from "@mui/material/Alert";

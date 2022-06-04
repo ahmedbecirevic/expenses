@@ -1,4 +1,4 @@
-import "./ChartBar.css";
+import styles from "./ChartBar.module.css";
 
 function ChartBar({ label, value, maxValue }) {
   let barFillHeight = "0%";
@@ -7,14 +7,14 @@ function ChartBar({ label, value, maxValue }) {
   }
 
   return (
-    <div className="chart-bar">
-      <div className="chart-bar__inner">
+    <div className={styles["chart-bar"]}>
+      <div className={styles["chart-bar__inner"]}>
         <div
-          className="chart-bar__fill"
+          className={styles["chart-bar__fill"]}
           style={{ height: barFillHeight }}
         />
       </div>
-      <div className="chart-bar__label">{label}</div>
+      <div className={styles["chart-bar__label"]}>{label}</div>
     </div>
   );
 }
