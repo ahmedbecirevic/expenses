@@ -1,14 +1,12 @@
-import Expenses from "./components/Expenses/Expenses";
-import NewExpense from "./components/NewExpense/NewExpense";
+import Navigation from "./components/Navigation";
 import Router from "./routes";
 import ExpensesProvider from "./store/ExpensesProvider";
 
 function App() {
   return (
     <ExpensesProvider>
+      <Navigation />
       <Router />
-      <NewExpense />
-      <Expenses />
     </ExpensesProvider>
   );
 }

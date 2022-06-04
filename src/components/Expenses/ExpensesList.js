@@ -17,13 +17,13 @@ function ExpensesList({ items, error, loading }) {
 
   return (
     <ul className="expenses-list">
-      {items.map((expense) => (
+      {items?.map((expense) => (
         <ExpenseItem
-          key={expense.id}
-          id={expense.id}
-          title={expense.title}
-          date={expense.date}
-          amount={expense.amount}
+          key={expense?.id}
+          id={expense?.id}
+          title={expense?.title}
+          date={expense?.date}
+          amount={expense?.amount}
         />
       ))}
     </ul>

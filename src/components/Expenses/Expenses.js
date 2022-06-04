@@ -1,69 +1,61 @@
 import {
-  useState, useContext, useEffect, useCallback,
+  useState, useEffect,
 } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-import { useHttp } from "../../hooks/use-http";
+// import { useHttp } from "../../hooks/use-http";
+import { Box } from "@mui/material";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
-import ExpensesContext from "../../store/expenses-context";
+import { addExpenses, getAllExpenses } from "../../features/expenseSlice";
+import NewExpense from "../NewExpense/NewExpense";
+// import ExpensesContext from "../../store/expenses-context";
 
 function Expenses() {
   const [year, setYear] = useState(2021);
-  const { expenses, addExpense } = useContext(ExpensesContext);
-  const { error, isLoading, sendRequest: getExpenses } = useHttp();
-
-  const transformExpenses = useCallback(
-    (expensesObject) => {
-      const loadedExpenses = [];
-
-      for (const expenseKey in expensesObject) {
-        const expense = expensesObject[expenseKey];
-        loadedExpenses.push({
-          id: expenseKey,
-          title: expense.title,
-          date: new Date(expense.date),
-          amount: expense.amount,
-        });
-      }
-
-      addExpense(loadedExpenses);
-    },
-    [addExpense],
-  );
+  const { expenses, error, isLoading } = useSelector((state) => state.expenseData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getExpenses(
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      },
-      transformExpenses,
-    );
-  }, [getExpenses, transformExpenses]);
+    (async () => {
+      // const res = await axios.get("https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json");
+      // dispatch(addExpenses(Object.entries(res.data).map(([id, expense]) => ({
+      //   id,
+      //   // date: new Date(expense?.date),
+      //   ...expense,
+      // }))));
+      await dispatch(getAllExpenses());
+    })();
+  }, []);
+
+  const expensesFiltered = expenses?.filter(
+    (expense) => {
+      const newDate = new Date(expense?.date);
+      return newDate.getFullYear() === year;
+    },
+  );
 
   const onYearFilterHandler = (selectedYear) => {
     setYear(Number(selectedYear));
   };
 
-  const expensesFiltered = expenses.filter(
-    (expense) => expense.date.getFullYear() === year,
-  );
-
   return (
-    <div>
+    <Box sx={{ mt: 2 }}>
+      <NewExpense />
       <Card className="expenses">
         <ExpensesFilter defaultYear={year} onSelectYear={onYearFilterHandler} />
         <ExpensesChart expenses={expensesFiltered} />
         <ExpensesList
           items={expensesFiltered}
           loading={isLoading}
-          error={error}
+          error={error?.isError}
         />
       </Card>
-    </div>
+    </Box>
   );
 }
 
