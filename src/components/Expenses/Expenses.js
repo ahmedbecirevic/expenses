@@ -16,18 +16,12 @@ import NewExpense from "../NewExpense/NewExpense";
 // import ExpensesContext from "../../store/expenses-context";
 
 function Expenses() {
-  const [year, setYear] = useState(2021);
+  const [year, setYear] = useState(2022);
   const { expenses, error, isLoading } = useSelector((state) => state.expenseData);
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      // const res = await axios.get("https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json");
-      // dispatch(addExpenses(Object.entries(res.data).map(([id, expense]) => ({
-      //   id,
-      //   // date: new Date(expense?.date),
-      //   ...expense,
-      // }))));
       await dispatch(getAllExpenses());
     })();
   }, []);

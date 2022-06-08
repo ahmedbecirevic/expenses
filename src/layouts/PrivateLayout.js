@@ -26,4 +26,6 @@ function PrivateLayout() {
   );
 }
 
+
+
 export default PrivateLayout;

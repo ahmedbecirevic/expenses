@@ -1,17 +1,21 @@
-import { useContext } from "react";
-
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { useDispatch } from 'react-redux';
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
-// import { FaTrashAlt } from 'react-icons/fa';
-import ExpensesContext from "../../store/expenses-context";
+import { deleteExpense, getAllExpenses } from '../../features/expenseSlice';
+import { isFulfilled } from '@reduxjs/toolkit';
 
 function ExpenseItem({
   date, title, amount, id,
 }) {
-  const { deleteExpense } = useContext(ExpensesContext);
-
-  const deleteExpenseHandler = () => deleteExpense(id);
+  const dispatch = useDispatch();
+  const deleteExpenseHandler = async () => {
+    const res = await dispatch(deleteExpense(id));
+    if (isFulfilled(res)) {
+      dispatch(getAllExpenses());
+    }
+  };
 
   return (
     <li>
@@ -24,7 +28,7 @@ function ExpenseItem({
             {amount}
           </div>
           <div className="delete-icon">
-            <button onClick={deleteExpenseHandler} type="button" />
+            <RemoveCircleOutlineIcon onClick={deleteExpenseHandler} type="button" />
           </div>
         </div>
       </Card>
