@@ -2,12 +2,14 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 import Alert from "@mui/material/Alert";
+import { useSelector } from "react-redux";
 
 function ExpenseForm({ onSaveExpenseData, onCancel }) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const { userId } = useSelector(state => state.userData);
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -26,6 +28,7 @@ function ExpenseForm({ onSaveExpenseData, onCancel }) {
       title: enteredTitle,
       amount: +enteredAmount,
       date: new Date(enteredDate),
+      userId: userId || localStorage.getItem('id'),
     };
 
     if (

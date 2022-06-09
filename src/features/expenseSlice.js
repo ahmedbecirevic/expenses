@@ -14,10 +14,14 @@ export const getAllExpenses = createAsyncThunk("expenses/getAll", async (args, {
   try {
     const res = await axios.get("https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json");
 
-    return Object.entries(res.data).map(([id, expense]) => ({
-      id,
-      ...expense,
-    }));
+    return Object.entries(res.data).map(([id, expense]) => {
+      if (expense?.userId === localStorage.getItem("id")) {
+        return {
+          id,
+          ...expense,
+        }
+      }
+    });
   } catch (error) {
     return rejectWithValue(error.message);
   }

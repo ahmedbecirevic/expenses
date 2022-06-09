@@ -16,10 +16,6 @@ function ExpensesChart({ expenses }) {
     { label: "Dec", value: 0 },
   ];
 
-  // for (const expense of expenses) {
-  //   const expenseMonth = expense.date.getMonth();
-  //   chartDataPoints[expenseMonth].value += expense.amount;
-  // }
   Object.values(expenses).forEach((expense) => {
     const newDate = new Date(expense?.date);
     const expenseMonth = newDate.getMonth();
