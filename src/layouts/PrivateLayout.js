@@ -1,7 +1,6 @@
 import { styled } from "@mui/material";
-import { Outlet } from "react-router-dom";
-
-import Navigation from "../components/Navigation";
+import { Navigate, Outlet } from "react-router-dom";
+import Navigation from "../components/Navigation"
 
 const RootStyle = styled("div")({
   display: "flex",
@@ -17,12 +16,19 @@ const MainStyle = styled("div")(() => ({
 }));
 
 function PrivateLayout() {
+  if (!localStorage.getItem("token")) {
+    return <Navigate to="sign-in" />
+  }
+
   return (
+    <>
+    <Navigation />
     <RootStyle>
       <MainStyle>
         <Outlet />
       </MainStyle>
     </RootStyle>
+    </>
   );
 }
 

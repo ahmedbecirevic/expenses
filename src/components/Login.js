@@ -1,9 +1,16 @@
 import GoogleLogin from "react-google-login";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const onLoggedInHandler = ({ tokenId, Ru }) => {
-    console.log(Ru?.AY);
+   localStorage.setItem("token", tokenId);
+   navigate("ëxpenses")
   };
+
+  if (localStorage.getItem("token")) {
+    localStorage.setItem("token", searchParams.get("token"));
+  }
 
   return (
     <GoogleLogin

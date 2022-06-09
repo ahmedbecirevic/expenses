@@ -3,6 +3,7 @@ import Expenses from "./components/Expenses/Expenses";
 import Login from "./components/Login";
 
 import PrivateLayout from "./layouts/PrivateLayout";
+import PublicLayout from "./layouts/PublicLayout";
 
 export default function Router() {
   return useRoutes([
@@ -16,7 +17,7 @@ export default function Router() {
     },
     {
       path: "/sign-in",
-      element: <PrivateLayout />,
+      element: <PublicLayout />,
       children: [
         { path: "", element: <Login /> },
       ],
