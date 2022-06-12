@@ -1,4 +1,5 @@
-import "./ExpensesFilter.css";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import './ExpensesFilter.css';
 
 function ExpensesFilter({ onSelectYear, defaultYear }) {
   const filterChangeHandler = (event) => {

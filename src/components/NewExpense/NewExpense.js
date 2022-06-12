@@ -1,15 +1,13 @@
-import { useState, useContext, useCallback } from "react";
-import { useHttp } from "../../hooks/use-http";
-import "./NewExpense.css";
-import ExpenseForm from "./ExpenseForm";
-import ExpensesContext from "../../store/expenses-context";
-import { useDispatch, useSelector } from "react-redux";
-import { createExpense, getAllExpenses } from "../../features/expenseSlice";
-import { isFulfilled } from "@reduxjs/toolkit";
+import { useState } from 'react';
+import './NewExpense.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { isFulfilled } from '@reduxjs/toolkit';
+import ExpenseForm from './ExpenseForm';
+import { createExpense, getAllExpenses } from '../../features/expenseSlice';
 
 function NewExpense() {
   const dispatch = useDispatch();
-  const {error: {isError, message}, isLoading} = useSelector(state => state.expenseData);
+  const { error: { isError, message }, isLoading } = useSelector((state) => state.expenseData);
 
   const saveExpsenseDataHandler = async (enteredExpenseData) => {
     const res = await dispatch(createExpense(enteredExpenseData));
@@ -29,10 +27,10 @@ function NewExpense() {
         <button onClick={startEditHandler} type="button">Add New Expense</button>
       )}
       {isEditing && (
-        <ExpenseForm
-          onSaveExpenseData={saveExpsenseDataHandler}
-          onCancel={stopEditHandler}
-        />
+      <ExpenseForm
+        onSaveExpenseData={saveExpsenseDataHandler}
+        onCancel={stopEditHandler}
+      />
       )}
       {isError && <p>{message}</p>}
       {isLoading && <p>Adding expense...</p>}

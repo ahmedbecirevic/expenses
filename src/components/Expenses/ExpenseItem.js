@@ -1,10 +1,10 @@
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useDispatch } from 'react-redux';
-import "./ExpenseItem.css";
-import ExpenseDate from "./ExpenseDate";
-import Card from "../UI/Card";
-import { deleteExpense, getAllExpenses } from '../../features/expenseSlice';
+import './ExpenseItem.css';
 import { isFulfilled } from '@reduxjs/toolkit';
+import ExpenseDate from './ExpenseDate';
+import Card from '../UI/Card';
+import { deleteExpense, getAllExpenses } from '../../features/expenseSlice';
 
 function ExpenseItem({
   date, title, amount, id,

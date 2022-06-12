@@ -1,8 +1,9 @@
-import ExpenseItem from "./ExpenseItem";
-import "./ExpensesList.css";
+/* eslint-disable react/jsx-props-no-spreading */
+import ExpenseItem from './ExpenseItem';
+import './ExpensesList.css';
 
 function ExpensesList({ items, error, loading }) {
-  const style = { className: "expenses-list__fallback" };
+  const style = { className: 'expenses-list__fallback' };
   if (error) {
     return <h2 {...style}>Cannot fetch any tasks!</h2>;
   }

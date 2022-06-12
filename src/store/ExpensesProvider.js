@@ -1,7 +1,8 @@
-import axios from "axios";
-import { useState, useCallback } from "react";
+/* eslint-disable react/jsx-no-constructed-context-values */
+import axios from 'axios';
+import { useState, useCallback } from 'react';
 
-import ExpensesContext from "./expenses-context";
+import ExpensesContext from './expenses-context';
 
 function ExpensesProvider({ children }) {
   const [expenses, setExpenses] = useState([]);
@@ -21,7 +22,7 @@ function ExpensesProvider({ children }) {
       .delete(
         `https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses/${expenseId}.json`,
       )
-      .then((res) => {
+      .then(() => {
         setExpenses((prevState) => {
           const filteredExpenses = prevState.filter(
             (expense) => expense.id !== expenseId,

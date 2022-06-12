@@ -1,5 +1,5 @@
-import ChartBar from "./ChartBar";
-import styles from "./Chart.module.css";
+import ChartBar from './ChartBar';
+import styles from './Chart.module.css';
 
 function Chart({ dataPoints }) {
   const dataPointsValues = dataPoints.map((dataPoint) => dataPoint.value);

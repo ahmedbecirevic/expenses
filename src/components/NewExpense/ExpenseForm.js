@@ -1,15 +1,17 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import "./ExpenseForm.css";
-import Alert from "@mui/material/Alert";
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import './ExpenseForm.css';
+import Alert from '@mui/material/Alert';
+import { useSelector } from 'react-redux';
+import { Box, Button, Stack } from '@mui/material';
 
 function ExpenseForm({ onSaveExpenseData, onCancel }) {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
   const [isValid, setIsValid] = useState(true);
-  const { userId } = useSelector(state => state.userData);
+  const { userId } = useSelector((state) => state.userData);
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -41,18 +43,18 @@ function ExpenseForm({ onSaveExpenseData, onCancel }) {
       return;
     }
 
-    setEnteredTitle("");
-    setEnteredAmount("");
-    setEnteredDate("");
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
     // pass data to the parent component
     onSaveExpenseData(expenseData);
     onCancel();
   };
 
   return (
-    <>
+    <Stack direction="column" justifyContent="center">
       {!isValid && (
-        <Alert severity="error">Please fill out all of the fields!</Alert>
+        <Alert sx={{ width: { md: '40%', sm: '60%', xs: '80%' } }} severity="error">Please fill out all of the fields!</Alert>
       )}
       <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
@@ -68,7 +70,7 @@ function ExpenseForm({ onSaveExpenseData, onCancel }) {
             <label>Amount</label>
             <input
               type="number"
-              min="0.01"
+              min="0.1"
               step="0.01"
               value={enteredAmount}
               onChange={amountChangeHandler}
@@ -85,14 +87,16 @@ function ExpenseForm({ onSaveExpenseData, onCancel }) {
             />
           </div>
         </div>
-        <div className="new-expense__actions">
-          <button type="button" onClick={onCancel}>
+        {/* <div className="new-expense__actions"> */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button sx={{ mr: 2, bgcolor: '#868787 !important' }} type="button" onClick={onCancel}>
             Cancel
-          </button>
-          <button type="submit">Add Expense</button>
-        </div>
+          </Button>
+          <Button sx={{ bgcolor: '#1a4246' }} type="submit">Add Expense</Button>
+        </Box>
+        {/* </div> */}
       </form>
-    </>
+    </Stack>
   );
 }
 

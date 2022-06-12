@@ -1,28 +1,28 @@
-import { Navigate, useRoutes } from "react-router-dom";
-import Expenses from "./components/Expenses/Expenses";
-import Login from "./components/Login";
-import Profile from "./components/Profile";
+import { Navigate, useRoutes } from 'react-router-dom';
+import Expenses from './components/Expenses/Expenses';
+import Login from './components/Login';
+import Profile from './components/Profile';
 
-import PrivateLayout from "./layouts/PrivateLayout";
-import PublicLayout from "./layouts/PublicLayout";
+import PrivateLayout from './layouts/PrivateLayout';
+import PublicLayout from './layouts/PublicLayout';
 
 export default function Router() {
   return useRoutes([
     {
-      path: "/",
+      path: '/',
       element: <PrivateLayout />,
       children: [
-        { path: "expenses", element: <Expenses /> },
-        { path: "profile", element: <Profile /> },
+        { path: '/', element: <Expenses /> },
+        { path: 'profile', element: <Profile /> },
       ],
     },
     {
-      path: "/sign-in",
+      path: '/sign-in',
       element: <PublicLayout />,
       children: [
-        { path: "", element: <Login /> },
+        { path: '', element: <Login /> },
       ],
     },
-    { path: "*", element: <Navigate to="/expenses" replace /> },
+    { path: '*', element: <Navigate to="/" replace /> },
   ]);
 }

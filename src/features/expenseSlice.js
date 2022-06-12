@@ -1,25 +1,28 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-param-reassign */
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   expenses: [],
   error: {
     isError: false,
-    message: "",
+    message: '',
   },
   isLoading: false,
 };
 
-export const getAllExpenses = createAsyncThunk("expenses/getAll", async (args, { rejectWithValue }) => {
+export const getAllExpenses = createAsyncThunk('expenses/getAll', async (args, { rejectWithValue }) => {
   try {
-    const res = await axios.get("https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json");
+    const res = await axios.get('https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json');
 
     return Object.entries(res.data).map(([id, expense]) => {
-      if (expense?.userId === localStorage.getItem("id")) {
+      if (expense?.userId === localStorage.getItem('id')) {
         return {
           id,
           ...expense,
-        }
+        };
       }
     });
   } catch (error) {
@@ -27,24 +30,24 @@ export const getAllExpenses = createAsyncThunk("expenses/getAll", async (args, {
   }
 });
 
-export const deleteExpense = createAsyncThunk("expenses/delete", async (id, { rejectWithValue }) => {
+export const deleteExpense = createAsyncThunk('expenses/delete', async (id, { rejectWithValue }) => {
   try {
-    const res = await axios.delete(`https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses/${id}.json`);
+    await axios.delete(`https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses/${id}.json`);
   } catch (error) {
     return rejectWithValue(error.message);
   }
 });
 
-export const createExpense = createAsyncThunk("expenses/addExpense", async (expense, { rejectWithValue }) => {
+export const createExpense = createAsyncThunk('expenses/addExpense', async (expense, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json`, expense);
+    await axios.post('https://react-app-practice-5893f-default-rtdb.europe-west1.firebasedatabase.app/expenses.json', expense);
   } catch (error) {
     return rejectWithValue(error.message);
   }
 });
 
 export const expenseSlice = createSlice({
-  name: "expenseData",
+  name: 'expenseData',
   initialState,
   reducers: {
     addExpense: (state, action) => {
@@ -74,7 +77,7 @@ export const expenseSlice = createSlice({
     [createExpense.pending]: (state) => {
       state.isLoading = true;
     },
-    [createExpense.fulfilled]: (state, action) => {
+    [createExpense.fulfilled]: (state) => {
       state.error.isError = false;
       state.isLoading = false;
     },

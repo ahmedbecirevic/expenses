@@ -1,17 +1,26 @@
-import { Button } from '@mui/material'
-import { useNavigate } from "react-router-dom";
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-const Logout = () => {
+function Logout() {
   const navigate = useNavigate();
-  console.log()
   return (
-    <Button variant="primary" onClick={() => {
-      localStorage.removeItem("token")
-      navigate("sign-in")
-    }}>
+    <Button
+      variant="primary"
+      sx={{
+        bgcolor: '#1a4246',
+        px: 4,
+        py: 2,
+        borderRadius: '10px',
+        color: 'white',
+      }}
+      onClick={() => {
+        localStorage.removeItem('token');
+        navigate('sign-in');
+      }}
+    >
       Logout
-    </Button >
-  )
+    </Button>
+  );
 }
 
 export default Logout;

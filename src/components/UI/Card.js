@@ -1,4 +1,4 @@
-import "./Card.css";
+import './Card.css';
 
 function Card({ className, children }) {
   const classes = `card ${className}`;

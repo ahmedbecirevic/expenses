@@ -1,18 +1,17 @@
 import {
   useState, useEffect,
-} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import { useHttp } from "../../hooks/use-http";
-import { Box } from "@mui/material";
-import ExpensesFilter from "./ExpensesFilter";
-import "./Expenses.css";
-import Card from "../UI/Card";
-import ExpensesList from "./ExpensesList";
-import ExpensesChart from "./ExpensesChart";
-import { addExpenses, getAllExpenses } from "../../features/expenseSlice";
-import NewExpense from "../NewExpense/NewExpense";
+import { Box } from '@mui/material';
+import ExpensesFilter from './ExpensesFilter';
+import './Expenses.css';
+import Card from '../UI/Card';
+import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
+import { getAllExpenses } from '../../features/expenseSlice';
+import NewExpense from '../NewExpense/NewExpense';
 // import ExpensesContext from "../../store/expenses-context";
 
 function Expenses() {
@@ -38,7 +37,7 @@ function Expenses() {
   };
 
   return (
-    <Box sx={{ mt: 2 }}>
+    <Box>
       <NewExpense />
       <Card className="expenses">
         <ExpensesFilter defaultYear={year} onSelectYear={onYearFilterHandler} />

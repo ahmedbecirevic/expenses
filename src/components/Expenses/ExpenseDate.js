@@ -1,9 +1,9 @@
-import "./ExpenseDate.css";
+import './ExpenseDate.css';
 
 function ExpenseDate({ date }) {
   const newDate = new Date(date);
-  const month = newDate.toLocaleString("en-GB", { month: "long" });
-  const day = newDate.toLocaleString("en-GB", { day: "2-digit" });
+  const month = newDate.toLocaleString('en-GB', { month: 'long' });
+  const day = newDate.toLocaleString('en-GB', { day: '2-digit' });
   const year = newDate.getFullYear();
 
   return (
