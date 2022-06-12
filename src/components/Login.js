@@ -61,7 +61,7 @@ function Login() {
           buttonText="Sign in with Google"
           onSuccess={onLoggedInHandler}
           // eslint-disable-next-line no-console
-          onFailure={() => console.log('fail')}
+          onFailure={(error) => console.log(error)}
           cookiePolicy="single_host_origin"
         />
       </Box>
